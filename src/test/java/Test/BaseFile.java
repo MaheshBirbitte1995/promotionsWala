@@ -1,14 +1,18 @@
 package Test;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
 
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
 import Utility.proper;
@@ -34,7 +38,7 @@ public class BaseFile{
 		driver = new ChromeDriver(options);
 		driver.get(proper.prop("Url"));
 
-	//	driver.manage().window().maximize();
+		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30)); 
 		
 
@@ -49,16 +53,33 @@ public class BaseFile{
 	
 	}
 	
-	@BeforeMethod
+	@BeforeClass
 	public  void log() throws Throwable 
 	{login.credentialsuser(proper.prop("user"));
 	login.credentialspass(proper.prop("pass"));
 	login.SwitchPromotions();
 		
 	}
-
-//@AfterClass
-//public void End () {
-//	driver.quit();
-//}
+	@AfterClass
+public void End () {
+	driver.quit();
 }
+	
+	
+	
+	public String  excel(int row, int colomn) throws IOException
+	{
+		String path = System.getProperty("user.dir")+".//Excel.xlsx";
+		File file = new File(path);
+		FileInputStream fis = new FileInputStream(file);
+		
+		XSSFWorkbook book = new XSSFWorkbook(fis);
+		XSSFSheet sheet1 = book.getSheet("Coupons");
+		
+		DataFormatter df =new  DataFormatter();
+	String value = df.formatCellValue(sheet1.getRow(row).getCell(colomn));
+	
+
+    return value;
+	}
+	}

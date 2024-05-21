@@ -3,14 +3,23 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="Test.Test_AddGiftCustomCode">
+      <class name="Test.Test_AddcouponCode">
         <methods>
+          <include name="Add_Couponwith_gift_and_systemGenerated_code"/>
+          <include name="Obj"/>
+          <include name="Test_Add_Coupon_Dicount_amt_without_Adv"/>
+          <include name="Test_Add_coupon_Discount_unit_with_adv"/>
+          <include name="Test_Add_Coupon_Discount_Amount_with_additional_Setting"/>
+          <include name="Test_Add_Coupon_Disount_percentage_with_adv"/>
+          <include name="Test_Add_Coupon_Discount_percentage_without_adv"/>
+          <include name="End"/>
+          <include name="Test_Add_Coupon_Discount_other_with_Adv"/>
+          <include name="execute"/>
+          <include name="Test_Add_Coupon_Discount_unit_without_adv"/>
           <include name="init"/>
           <include name="log"/>
-          <include name="Obj"/>
-          <include name="execute"/>
         </methods>
-      </class> <!-- Test.Test_AddGiftCustomCode -->
+      </class> <!-- Test.Test_AddcouponCode -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
